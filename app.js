@@ -1,4 +1,5 @@
 const axios = require('axios');
+const mqtt = require('mqtt');
 
 const main_loop = () => {
     setTimeout(() => {
@@ -21,9 +22,16 @@ const main_loop = () => {
                 }
 
                 console.log(start_time_stamp, joints, delta, 'ms');
+                
                 main_loop();
             });
-    }, 10);
+    }, 1000);
 }
 
-main_loop();
+//main_loop();
+
+const mqtt_client = mqtt.connect('wss://jari-auoh-mqtt-broker.herokuapp.com');
+mqtt_client.on('connect', () => {
+    console.log('connected to mqtt broker');
+    main_loop();
+});
