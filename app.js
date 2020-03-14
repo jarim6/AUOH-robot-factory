@@ -25,7 +25,7 @@ const main_loop = () => {
                 
                 main_loop();
             });
-    }, 1000);
+    }, 10000);
 }
 
 //main_loop();
